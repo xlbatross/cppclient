@@ -1,22 +1,22 @@
 [
 {
-  "directory": "C:/Users/user/Desktop/cppClient/build",
-  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\main.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\main.cpp",
-  "file": "C:/Users/user/Desktop/cppClient/main.cpp"
+  "directory": "/Users/xlbatross/cpp/cppclient/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++17 -o CMakeFiles/cppclient.dir/main.cpp.o -c /Users/xlbatross/cpp/cppclient/main.cpp",
+  "file": "/Users/xlbatross/cpp/cppclient/main.cpp"
 },
 {
-  "directory": "C:/Users/user/Desktop/cppClient/build",
-  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\clientw.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\clientw.cpp",
-  "file": "C:/Users/user/Desktop/cppClient/clientw.cpp"
+  "directory": "/Users/xlbatross/cpp/cppclient/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++17 -o CMakeFiles/cppclient.dir/encode.cpp.o -c /Users/xlbatross/cpp/cppclient/encode.cpp",
+  "file": "/Users/xlbatross/cpp/cppclient/encode.cpp"
 },
 {
-  "directory": "C:/Users/user/Desktop/cppClient/build",
-  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\encode.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\encode.cpp",
-  "file": "C:/Users/user/Desktop/cppClient/encode.cpp"
+  "directory": "/Users/xlbatross/cpp/cppclient/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++17 -o CMakeFiles/cppclient.dir/decode.cpp.o -c /Users/xlbatross/cpp/cppclient/decode.cpp",
+  "file": "/Users/xlbatross/cpp/cppclient/decode.cpp"
 },
 {
-  "directory": "C:/Users/user/Desktop/cppClient/build",
-  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\decode.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\decode.cpp",
-  "file": "C:/Users/user/Desktop/cppClient/decode.cpp"
+  "directory": "/Users/xlbatross/cpp/cppclient/build",
+  "command": "/usr/bin/clang++   -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -mmacosx-version-min=13.0 -std=gnu++17 -o CMakeFiles/cppclient.dir/clientl.cpp.o -c /Users/xlbatross/cpp/cppclient/clientl.cpp",
+  "file": "/Users/xlbatross/cpp/cppclient/clientl.cpp"
 }
 ]

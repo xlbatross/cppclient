@@ -4,23 +4,38 @@ project(cppclient VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# if(WIN32)
+#     set(OpenCV_DIR "C:/OpenCV-MinGW")
+# endif()
+
+# find_package(OpenCV REQUIRED)
+# include_directories(${OpenCV_INCLUDE_DIR})
 if(WIN32)
-    set(OpenCV_DIR "C:/OpenCV-MinGW")
+    set(WINDOWS_SOURCES
+        clientw.h
+        clientw.cpp
+    )
+elseif(APPLE)
+    set(MAC_SOURCES
+        clientl.h
+        clientl.cpp
+    )
 endif()
 
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIR})
 
 add_executable(${PROJECT_NAME} 
     main.cpp
-    clientw.h
-    clientw.cpp
     encode.h
     encode.cpp
     decode.h
     decode.cpp
+    ${WINDOSWS_SOURCES}
+    ${MAC_SOURCES}
 )
+
 target_link_libraries(${PROJECT_NAME} 
     ${LIBOPENCV}
     ${OpenCV_LIBRARIES}

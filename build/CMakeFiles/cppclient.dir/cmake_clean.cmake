@@ -1,16 +1,14 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cppclient.dir/clientw.cpp.obj"
-  "CMakeFiles/cppclient.dir/clientw.cpp.obj.d"
-  "CMakeFiles/cppclient.dir/decode.cpp.obj"
-  "CMakeFiles/cppclient.dir/decode.cpp.obj.d"
-  "CMakeFiles/cppclient.dir/encode.cpp.obj"
-  "CMakeFiles/cppclient.dir/encode.cpp.obj.d"
-  "CMakeFiles/cppclient.dir/main.cpp.obj"
-  "CMakeFiles/cppclient.dir/main.cpp.obj.d"
-  "cppclient.exe"
-  "cppclient.exe.manifest"
+  "CMakeFiles/cppclient.dir/clientl.cpp.o"
+  "CMakeFiles/cppclient.dir/clientl.cpp.o.d"
+  "CMakeFiles/cppclient.dir/decode.cpp.o"
+  "CMakeFiles/cppclient.dir/decode.cpp.o.d"
+  "CMakeFiles/cppclient.dir/encode.cpp.o"
+  "CMakeFiles/cppclient.dir/encode.cpp.o.d"
+  "CMakeFiles/cppclient.dir/main.cpp.o"
+  "CMakeFiles/cppclient.dir/main.cpp.o.d"
+  "cppclient"
   "cppclient.pdb"
-  "libcppclient.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

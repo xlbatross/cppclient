@@ -1,10 +1,15 @@
 #include <iostream>
 #include <thread>
-#include "clientw.h"
-void receiveHandler(ClientW * client);
+// #include "clientw.h"
+#include "clientl.h"
+void receiveHandler(
+    // ClientW * client
+    ClientL * client
+);
 
 int main(int, char**) {
-    ClientW * client = new ClientWTCP();
+    // ClientW * client = new ClientWTCP();
+    ClientL * client = new ClientLTCP();
     if (client->connectServer())
     {
         std::thread recvThread(receiveHandler, client);
@@ -18,9 +23,16 @@ int main(int, char**) {
             client->sendData((Encode *)&ecd);
         }
     }
+    else
+    {
+        std::cout << "not connected" << std::endl;
+    }
 }
 
-void receiveHandler(ClientW * client)
+void receiveHandler(
+    // ClientW * client
+    ClientL * client
+)
 {
     while (true)
     {
