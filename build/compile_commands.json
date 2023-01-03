@@ -1,0 +1,22 @@
+[
+{
+  "directory": "C:/Users/user/Desktop/cppClient/build",
+  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\main.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\main.cpp",
+  "file": "C:/Users/user/Desktop/cppClient/main.cpp"
+},
+{
+  "directory": "C:/Users/user/Desktop/cppClient/build",
+  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\clientw.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\clientw.cpp",
+  "file": "C:/Users/user/Desktop/cppClient/clientw.cpp"
+},
+{
+  "directory": "C:/Users/user/Desktop/cppClient/build",
+  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\encode.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\encode.cpp",
+  "file": "C:/Users/user/Desktop/cppClient/encode.cpp"
+},
+{
+  "directory": "C:/Users/user/Desktop/cppClient/build",
+  "command": "C:\\Qt\\Tools\\mingw810_64\\bin\\g++.exe  @CMakeFiles/cppclient.dir/includes_CXX.rsp -g -o CMakeFiles\\cppclient.dir\\decode.cpp.obj -c C:\\Users\\user\\Desktop\\cppClient\\decode.cpp",
+  "file": "C:/Users/user/Desktop/cppClient/decode.cpp"
+}
+]
