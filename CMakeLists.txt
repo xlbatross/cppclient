@@ -32,7 +32,7 @@ add_executable(${PROJECT_NAME}
     encode.cpp
     decode.h
     decode.cpp
-    ${WINDOSWS_SOURCES}
+    ${WINDOWS_SOURCES}
     ${MAC_SOURCES}
 )
 
