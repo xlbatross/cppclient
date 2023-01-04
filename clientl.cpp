@@ -62,26 +62,27 @@ ClientLTCP::ClientLTCP()
 
 int ClientLTCP::receiveBytes(char * & rawData)
 {
-    int totalDataSize = -1;
     char dataSizeBuffer[4];
     // 4바이트를 먼저 읽어, 총 데이터의 길이를 파악한다
+    int readBytes = read(sock, dataSizeBuffer, 4, 0);
+    if (readBytes == -1)
+        return -1;
+
     // 총 데이터 길이는 헤더의 길이(4바이트) + 헤더 + 실제 데이터
     // 헤더는 요청 응답 타입(4바이트) + 실제 데이터 하나의 길이값(4바이트) * 헤더의 길이 - 1
-    int readBytes = read(sock, dataSizeBuffer, 4);
-    int dataSize = *((int *)dataSizeBuffer);
-    if (readBytes != -1)
+    int totalRecvSize = 0;
+    int packetSize = 0; 
+    int totalDataSize = *((int *)dataSizeBuffer);
+    rawData = new char[totalDataSize];
+    while (totalRecvSize < totalDataSize)
     {
-        rawData = new char[dataSize];
-        for (int i = 0; i < dataSize; i += 1024)
-        {
-            int packetSize = (i + 1024 < dataSize) ? 1024 : dataSize - i;
-            readBytes = read(sock, rawData + i, packetSize);
-            if (readBytes == -1)
-                return -1;
-            totalDataSize += readBytes;
-        }
+        packetSize = (totalRecvSize + 1024 < totalDataSize) ? 1024 : totalDataSize - totalRecvSize;
+        readBytes = read(sock, rawData + totalRecvSize, packetSize, 0);
+        if (readBytes == -1)
+            return -1;
+        totalRecvSize += readBytes;
     }
-    return totalDataSize;
+    return totalRecvSize;
 }
 
 int ClientLTCP::sendBytes(const char *headerBytes, const int headerSize, const char *dataBytes, const int dataSize)
