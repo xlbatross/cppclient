@@ -1,23 +1,24 @@
 #include <iostream>
 #include <thread>
-// #include "clientw.h"
-#include "clientl.h"
+#include <iconv.h>
+#include "clientw.h"
+// #include "clientl.h"
 void receiveHandler(
-    // ClientW * client
-    ClientL * client
+    ClientW * client
+    // ClientL * client
 );
 
 int main(int, char**) {
-    // ClientW * client = new ClientWTCP();
-    ClientL * client = new ClientLTCP();
+    ClientW * client = new ClientWTCP();
+    // ClientL * client = new ClientLTCP();
     if (client->connectServer())
     {
         std::thread recvThread(receiveHandler, client);
 
         while (true)
         {
-            std::cout << "input >> ";
-            string k;
+            std::cout << "ют╥б >> ";
+            std::string k;
             std::cin >> k;
             EncodeChat ecd(k);
             client->sendData((Encode *)&ecd);
@@ -30,8 +31,8 @@ int main(int, char**) {
 }
 
 void receiveHandler(
-    // ClientW * client
-    ClientL * client
+    ClientW * client
+    // ClientL * client
 )
 {
     while (true)

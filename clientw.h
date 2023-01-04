@@ -14,7 +14,7 @@ public:
 
     string sockIp();
     int sockPort();
-
+    
     virtual bool connectServer(const char * servIp = "127.0.0.1", int port = 2500);
     virtual int receiveBytes(char * & rawData) = 0;
     virtual bool receiveData(Decode * & ecd) = 0;
@@ -50,5 +50,4 @@ public:
     bool receiveData(Decode * & ecd) override;
     int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) override;
 };
-
 #endif // CLIENTW_H

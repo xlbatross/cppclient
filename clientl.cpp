@@ -63,13 +63,13 @@ ClientLTCP::ClientLTCP()
 int ClientLTCP::receiveBytes(char * & rawData)
 {
     char dataSizeBuffer[4];
-    // 4ë°”ì´íŠ¸ë¥¼ ë¨¼ì € ì½ì–´, ì´ ë°ì´í„°ì˜ ê¸¸ì´ë¥¼ íŒŒì•…í•œë‹¤
+    // 4¹ÙÀÌÆ®¸¦ ¸ÕÀú ÀÐ¾î, ÃÑ µ¥ÀÌÅÍÀÇ ±æÀÌ¸¦ ÆÄ¾ÇÇÑ´Ù
     int readBytes = read(sock, dataSizeBuffer, 4, 0);
     if (readBytes == -1)
         return -1;
 
-    // ì´ ë°ì´í„° ê¸¸ì´ëŠ” í—¤ë”ì˜ ê¸¸ì´(4ë°”ì´íŠ¸) + í—¤ë” + ì‹¤ì œ ë°ì´í„°
-    // í—¤ë”ëŠ” ìš”ì²­ ì‘ë‹µ íƒ€ìž…(4ë°”ì´íŠ¸) + ì‹¤ì œ ë°ì´í„° í•˜ë‚˜ì˜ ê¸¸ì´ê°’(4ë°”ì´íŠ¸) * í—¤ë”ì˜ ê¸¸ì´ - 1
+    // ÃÑ µ¥ÀÌÅÍ ±æÀÌ´Â Çì´õÀÇ ±æÀÌ(4¹ÙÀÌÆ®) + Çì´õ + ½ÇÁ¦ µ¥ÀÌÅÍ
+    // Çì´õ´Â ¿äÃ» ÀÀ´ä Å¸ÀÔ(4¹ÙÀÌÆ®) + ½ÇÁ¦ µ¥ÀÌÅÍ ÇÏ³ªÀÇ ±æÀÌ°ª(4¹ÙÀÌÆ®) * Çì´õÀÇ ±æÀÌ - 1
     int totalRecvSize = 0;
     int packetSize = 0; 
     int totalDataSize = *((int *)dataSizeBuffer);

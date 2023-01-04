@@ -21,7 +21,7 @@ public:
 
     const int DataSize();
     const char * DataBytes();
-
+    
 protected:
     vector<vector<char>> dataBytesList;
     int headerSize = 0;

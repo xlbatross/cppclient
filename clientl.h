@@ -14,7 +14,7 @@ class ClientL
 public:
     explicit ClientL();
     ~ClientL();
-
+    
     string sockIp();
     int sockPort();
 
@@ -51,6 +51,4 @@ public:
     bool receiveData(Decode * & ecd) override;
     int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) override;
 };
-
-
 #endif // CLIENTL_H
