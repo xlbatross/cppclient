@@ -78,13 +78,43 @@ void EncodeTCP::packaging(const int type)
     }
 }
 
-EncodeChat::EncodeChat(const std::string &msg)
+EcdChat::EcdChat(const std::string &msg)
 {
     vector<char> msgvector(msg.length());
     std::copy(msg.begin(), msg.end(), msgvector.begin());
     dataBytesList.push_back(msgvector);
 
     packaging(Encode::Chat);
+}
+
+EcdLogin::EcdLogin(const string & id, const string & pw)
+{
+    vector<char> idvector(id.length());
+    std::copy(id.begin(), id.end(), idvector.begin());
+    dataBytesList.push_back(idvector);
+
+    vector<char> pwvector(pw.length());
+    std::copy(pw.begin(), pw.end(), pwvector.begin());
+    dataBytesList.push_back(pwvector);
+
+    packaging(Encode::Login);
+}
+
+EcdRegist::EcdRegist(const string & id, const string & pw, const string & name)
+{
+    vector<char> idvector(id.length());
+    std::copy(id.begin(), id.end(), idvector.begin());
+    dataBytesList.push_back(idvector);
+
+    vector<char> pwvector(pw.length());
+    std::copy(pw.begin(), pw.end(), pwvector.begin());
+    dataBytesList.push_back(pwvector);
+
+    vector<char> namevector(name.length());
+    std::copy(name.begin(), name.end(), namevector.begin());
+    dataBytesList.push_back(namevector);
+
+    packaging(Encode::Regist);
 }
 
 // ReqImage::ReqImage(const cv::Mat &img)

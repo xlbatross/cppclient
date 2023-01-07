@@ -52,15 +52,90 @@ DecodeTCP::DecodeTCP(const char * rawData)
     }
 }
 
-DecodeChat::DecodeChat(DecodeTCP *dcdtcp)
+DcdChat::DcdChat(DecodeTCP *dcdtcp)
 {
-    msg.append(dcdtcp->DataBytesList()[0].data(), dcdtcp->DataBytesList()[0].size());
+    name.append(dcdtcp->DataBytesList()[0].data(), dcdtcp->DataBytesList()[0].size());
+    msg.append(dcdtcp->DataBytesList()[1].data(), dcdtcp->DataBytesList()[1].size());
 }
 
-const string DecodeChat::Msg()
+const string DcdChat::Name()
+{
+    return name;
+}
+
+const string DcdChat::Msg()
 {
     return msg;
 }
+
+DcdLoginResult::DcdLoginResult(DecodeTCP *dcdtcp)
+{
+    int loginState;
+    memcpy(&loginState, dcdtcp->DataBytesList()[0].data(), dcdtcp->DataBytesList()[0].size());
+
+    switch(loginState)
+    {
+        case -2:
+            isLogined = false;
+            ment = "이미 로그인한 아이디입니다.";
+            break;
+        case -1:
+            isLogined = false;
+            ment = "데이터베이스와의 연결 실패";
+            break;
+        case 0:
+            isLogined = false;
+            ment = "아이디 또는 비밀번호가 맞지 않습니다.";
+            break;
+        case 1:
+            isLogined = true;
+            ment = "로그인 성공!";
+            break;
+    }
+}
+
+const bool DcdLoginResult::IsLogined()
+{
+    return isLogined;
+}
+
+const string DcdLoginResult::Ment()
+{
+    return ment;
+}
+
+DcdRegistResult::DcdRegistResult(DecodeTCP *dcdtcp)
+{
+    int registState;
+    memcpy(&registState, dcdtcp->DataBytesList()[0].data(), dcdtcp->DataBytesList()[0].size());
+
+    switch(registState)
+    {
+        case -2:
+            isRegisted = false;
+            ment = "이미 동일한 아이디가 존재합니다.";
+            break;
+        case -1:
+            isRegisted = false;
+            ment = "데이터베이스와의 연결 실패";
+            break;
+        case 0:
+            isRegisted = true;
+            ment = "회원가입 성공!";
+            break;
+    }
+}
+
+const bool DcdRegistResult::IsRegisted()
+{
+    return isRegisted;
+}
+
+const string DcdRegistResult::Ment()
+{
+    return ment;
+}
+
 
 // // udp start
 // ResponseUDP::ResponseUDP()

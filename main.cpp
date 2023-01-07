@@ -20,7 +20,7 @@ int main(int, char**) {
             std::cout << "input >> ";
             std::string k;
             getline(std::cin, k);
-            EncodeChat ecd(k);
+            EcdChat ecd(k);
             if (!client->sendData((Encode *)&ecd))
             {
                 std::cout << "not connected" << std::endl;
@@ -52,7 +52,7 @@ void receiveHandler(
         {
         case Decode::Chat:
         {
-          DecodeChat chat((DecodeTCP *)dcd);
+          DcdChat chat((DecodeTCP *)dcd);
           std::cout << "server : " << chat.Msg() << std::endl;
         } break;
         }

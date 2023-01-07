@@ -10,7 +10,7 @@ using std::string;
 class Decode
 {
 public:
-    enum Type {Chat};
+    enum Type {Chat, LoginResult, RegistResult};
     Decode();
 
     const int Type();
@@ -27,13 +27,39 @@ public:
     DecodeTCP(const char * rawData);
 };
 
-class DecodeChat
+class DcdChat
 {
 public:
-    DecodeChat(DecodeTCP * dcdtcp);
+    DcdChat(DecodeTCP * dcdtcp);
+    const string Name();
     const string Msg();
 private:
+    string name;
     string msg;
+};
+
+class DcdLoginResult
+{
+public:
+    DcdLoginResult(DecodeTCP * dcdtcp);
+    const bool IsLogined();
+    const string Ment();
+
+private:
+    bool isLogined;
+    string ment;
+};
+
+class DcdRegistResult
+{
+public:
+    DcdRegistResult(DecodeTCP * dcdtcp);
+    const bool IsRegisted();
+    const string Ment();
+
+private:
+    bool isRegisted;
+    string ment;
 };
 
 #endif // DECODE_H

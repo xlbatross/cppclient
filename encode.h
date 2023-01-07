@@ -10,7 +10,7 @@ using std::string;
 class Encode
 {
 public:
-    enum EncodeType {Chat};
+    enum EncodeType {Chat, Login, Regist};
     Encode();
     ~Encode();
 
@@ -41,10 +41,22 @@ public:
     void packaging(const int type) override;
 };
 
-class EncodeChat: public EncodeTCP
+class EcdChat: public EncodeTCP
 {
 public:
-    EncodeChat(const string & msg);
+    EcdChat(const string & msg);
+};
+
+class EcdLogin: public EncodeTCP
+{
+public:
+    EcdLogin(const string & id, const string & pw);
+};
+
+class EcdRegist: public EncodeTCP
+{
+public:
+    EcdRegist(const string & id, const string & pw, const string & name);
 };
 
 #endif // ENCODE_H
