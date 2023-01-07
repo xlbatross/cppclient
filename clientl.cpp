@@ -50,7 +50,7 @@ bool ClientL::sendData(Encode * ecd)
 {
     int totalDataSize = sendBytes(ecd->HeaderBytes(), ecd->HeaderSize(), ecd->DataBytes(), ecd->DataSize());
 
-    return (totalDataSize == -1);
+    return (totalDataSize != -1);
 }
 
 // TCP
@@ -63,13 +63,13 @@ ClientLTCP::ClientLTCP()
 int ClientLTCP::receiveBytes(char * & rawData)
 {
     char dataSizeBuffer[4];
-    // 4¹ÙÀÌÆ®¸¦ ¸ÕÀú ÀĞ¾î, ÃÑ µ¥ÀÌÅÍÀÇ ±æÀÌ¸¦ ÆÄ¾ÇÇÑ´Ù
-    int readBytes = read(sock, dataSizeBuffer, 4, 0);
+    // 4ë°”ì´íŠ¸ë¥¼ ë¨¼ì € ì½ì–´, ì´ ë°ì´í„°ì˜ ê¸¸ì´ë¥¼ íŒŒì•…í•œë‹¤
+    int readBytes = read(sock, dataSizeBuffer, 4);
     if (readBytes <= 0)
         return -1;
 
-    // ÃÑ µ¥ÀÌÅÍ ±æÀÌ´Â Çì´õÀÇ ±æÀÌ(4¹ÙÀÌÆ®) + Çì´õ + ½ÇÁ¦ µ¥ÀÌÅÍ
-    // Çì´õ´Â ¿äÃ» ÀÀ´ä Å¸ÀÔ(4¹ÙÀÌÆ®) + ½ÇÁ¦ µ¥ÀÌÅÍ ÇÏ³ªÀÇ ±æÀÌ°ª(4¹ÙÀÌÆ®) * Çì´õÀÇ ±æÀÌ - 1
+    // ì´ ë°ì´í„° ê¸¸ì´ëŠ” í—¤ë”ì˜ ê¸¸ì´(4ë°”ì´íŠ¸) + í—¤ë” + ì‹¤ì œ ë°ì´í„°
+    // í—¤ë”ëŠ” ìš”ì²­ ì‘ë‹µ íƒ€ì…(4ë°”ì´íŠ¸) + ì‹¤ì œ ë°ì´í„° í•˜ë‚˜ì˜ ê¸¸ì´ê°’(4ë°”ì´íŠ¸) * í—¤ë”ì˜ ê¸¸ì´ - 1
     int totalRecvSize = 0;
     int packetSize = 0; 
     int totalDataSize = *((int *)dataSizeBuffer);
@@ -77,7 +77,7 @@ int ClientLTCP::receiveBytes(char * & rawData)
     while (totalRecvSize < totalDataSize)
     {
         packetSize = (totalRecvSize + 1024 < totalDataSize) ? 1024 : totalDataSize - totalRecvSize;
-        readBytes = read(sock, rawData + totalRecvSize, packetSize, 0);
+        readBytes = read(sock, rawData + totalRecvSize, packetSize);
         if (readBytes <= 0)
             return -1;
         totalRecvSize += readBytes;

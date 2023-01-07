@@ -23,15 +23,15 @@ DecodeTCP::DecodeTCP(const char * rawData)
     int dataLength = 0;
     vector<int> dataLengthList;
 
-    // Ã³À½ 4¹ÙÀÌÆ®´Â Çì´õÀÇ ±æÀÌ
+    // ì²˜ìŒ 4ë°”ì´íŠ¸ëŠ” í—¤ë”ì˜ ê¸¸ì´
     memcpy(&headerSize, rawData + pointer, sizeof(int));
     pointer += sizeof(int);
 
-    // ´ÙÀ½ 4¹ÙÀÌÆ®´Â ¿äÃ» ¶Ç´Â ÀÀ´ä Å¸ÀÔ
+    // ë‹¤ìŒ 4ë°”ì´íŠ¸ëŠ” ìš”ì²­ ë˜ëŠ” ì‘ë‹µ íƒ€ì…
     memcpy(&type, rawData + pointer, sizeof(int));
     pointer += sizeof(int);
 
-    // ´ÙÀ½ 4¹ÙÀÌÆ®ºÎÅÍ Çì´õ ³¡±îÁö´Â ÀÇ¹ÌÀÖ´Â µ¥ÀÌÅÍ ÇÏ³ªÀÇ ±æÀÌ°ªµé
+    // ë‹¤ìŒ 4ë°”ì´íŠ¸ë¶€í„° í—¤ë” ëê¹Œì§€ëŠ” ì˜ë¯¸ìˆëŠ” ë°ì´í„° í•˜ë‚˜ì˜ ê¸¸ì´ê°’ë“¤
     for (int i = 0; i < headerSize - sizeof(int); i += sizeof(int))
     {
         memcpy(&dataLength, rawData + pointer, sizeof(int));
@@ -41,7 +41,7 @@ DecodeTCP::DecodeTCP(const char * rawData)
 
     if (dataLengthList.size() > 0)
     {
-        // ³²Àº ·Î¿ìµ¥ÀÌÅÍ¸¦ ÀÇ¹ÌÀÖ´Â µ¥ÀÌÅÍµé·Î º¯È¯
+        // ë‚¨ì€ ë¡œìš°ë°ì´í„°ë¥¼ ì˜ë¯¸ìˆëŠ” ë°ì´í„°ë“¤ë¡œ ë³€í™˜
         for (int i = 0; i < dataLengthList.size(); i++)
         {
             vector<char> dataBytes(dataLengthList[i]);
@@ -77,19 +77,19 @@ DcdLoginResult::DcdLoginResult(DecodeTCP *dcdtcp)
     {
         case -2:
             isLogined = false;
-            ment = "ÀÌ¹Ì ·Î±×ÀÎÇÑ ¾ÆÀÌµğÀÔ´Ï´Ù.";
+            ment = "ì´ë¯¸ ë¡œê·¸ì¸í•œ ì•„ì´ë””ì…ë‹ˆë‹¤.";
             break;
         case -1:
             isLogined = false;
-            ment = "µ¥ÀÌÅÍº£ÀÌ½º¿ÍÀÇ ¿¬°á ½ÇÆĞ";
+            ment = "ë°ì´í„°ë² ì´ìŠ¤ì™€ì˜ ì—°ê²° ì‹¤íŒ¨";
             break;
         case 0:
             isLogined = false;
-            ment = "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.";
+            ment = "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.";
             break;
         case 1:
             isLogined = true;
-            ment = "·Î±×ÀÎ ¼º°ø!";
+            ment = "ë¡œê·¸ì¸ ì„±ê³µ!";
             break;
     }
 }
@@ -113,15 +113,15 @@ DcdRegistResult::DcdRegistResult(DecodeTCP *dcdtcp)
     {
         case -2:
             isRegisted = false;
-            ment = "ÀÌ¹Ì µ¿ÀÏÇÑ ¾ÆÀÌµğ°¡ Á¸ÀçÇÕ´Ï´Ù.";
+            ment = "ì´ë¯¸ ë™ì¼í•œ ì•„ì´ë””ê°€ ì¡´ì¬í•©ë‹ˆë‹¤.";
             break;
         case -1:
             isRegisted = false;
-            ment = "µ¥ÀÌÅÍº£ÀÌ½º¿ÍÀÇ ¿¬°á ½ÇÆĞ";
+            ment = "ë°ì´í„°ë² ì´ìŠ¤ì™€ì˜ ì—°ê²° ì‹¤íŒ¨";
             break;
         case 0:
             isRegisted = true;
-            ment = "È¸¿ø°¡ÀÔ ¼º°ø!";
+            ment = "íšŒì›ê°€ì… ì„±ê³µ!";
             break;
     }
 }

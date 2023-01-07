@@ -12,7 +12,7 @@ class Encode
 public:
     enum EncodeType {Chat, Login, Regist};
     Encode();
-    ~Encode();
+    virtual ~Encode();
 
     virtual void packaging(const int type) = 0;
 

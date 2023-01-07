@@ -1,16 +1,16 @@
 #include <iostream>
 #include <thread>
 #include <iconv.h>
-#include "clientw.h"
-// #include "clientl.h"
+// #include "clientw.h"
+#include "clientl.h"
 void receiveHandler(
-    ClientW * client
-    // ClientL * client
+    // ClientW * client
+    ClientL * client
 );
 
 int main(int, char**) {
-    ClientW * client = new ClientWTCP();
-    // ClientL * client = new ClientLTCP();
+    // ClientW * client = new ClientWTCP();
+    ClientL * client = new ClientLTCP();
     if (client->connectServer())
     {
         std::thread recvThread(receiveHandler, client);
@@ -35,8 +35,8 @@ int main(int, char**) {
 }
 
 void receiveHandler(
-    ClientW * client
-    // ClientL * client
+    // ClientW * client
+    ClientL * client
 )
 {
     while (true)
@@ -53,7 +53,7 @@ void receiveHandler(
         case Decode::Chat:
         {
           DcdChat chat((DecodeTCP *)dcd);
-          std::cout << "server : " << chat.Msg() << std::endl;
+          std::cout << chat.Name() << " : " << chat.Msg() << std::endl;
         } break;
         }
 
