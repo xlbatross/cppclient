@@ -65,7 +65,7 @@ int ClientLTCP::receiveBytes(char * & rawData)
     char dataSizeBuffer[4];
     // 4바이트를 먼저 읽어, 총 데이터의 길이를 파악한다
     int readBytes = read(sock, dataSizeBuffer, 4, 0);
-    if (readBytes == -1)
+    if (readBytes <= 0)
         return -1;
 
     // 총 데이터 길이는 헤더의 길이(4바이트) + 헤더 + 실제 데이터
@@ -78,7 +78,7 @@ int ClientLTCP::receiveBytes(char * & rawData)
     {
         packetSize = (totalRecvSize + 1024 < totalDataSize) ? 1024 : totalDataSize - totalRecvSize;
         readBytes = read(sock, rawData + totalRecvSize, packetSize, 0);
-        if (readBytes == -1)
+        if (readBytes <= 0)
             return -1;
         totalRecvSize += readBytes;
     }

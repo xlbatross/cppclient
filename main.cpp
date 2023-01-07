@@ -17,11 +17,15 @@ int main(int, char**) {
 
         while (true)
         {
-            std::cout << "ют╥б >> ";
+            std::cout << "input >> ";
             std::string k;
-            std::cin >> k;
+            getline(std::cin, k);
             EncodeChat ecd(k);
-            client->sendData((Encode *)&ecd);
+            if (!client->sendData((Encode *)&ecd))
+            {
+                std::cout << "not connected" << std::endl;
+                break;
+            } 
         }
     }
     else

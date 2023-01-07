@@ -67,7 +67,7 @@ int ClientWTCP::receiveBytes(char * & rawData)
     char dataSizeBuffer[4];
     // 4바이트를 먼저 읽어, 총 데이터의 길이를 파악한다
     int readBytes = recv(sock, dataSizeBuffer, 4, 0);
-    if (readBytes == SOCKET_ERROR)
+    if (readBytes <= 0)
         return -1;
 
     // 총 데이터 길이는 헤더의 길이(4바이트) + 헤더 + 실제 데이터
@@ -80,7 +80,7 @@ int ClientWTCP::receiveBytes(char * & rawData)
     {
         packetSize = (totalRecvSize + 1024 < totalDataSize) ? 1024 : totalDataSize - totalRecvSize;
         readBytes = recv(sock, rawData + totalRecvSize, packetSize, 0);
-        if (readBytes == SOCKET_ERROR)
+        if (readBytes <= 0)
             return -1;
         totalRecvSize += readBytes;
     }
@@ -102,19 +102,7 @@ int ClientWTCP::sendBytes(const char *headerBytes, const int headerSize, const c
         totalSendSize = sendSize;
 
     delete [] totalBytes;
-
-//    if ((sendSize = send(sock, (char *)&totalSize, sizeof(int), 0)) == SOCKET_ERROR)
-//        return -1;
-//    totalSendSize = sendSize;
-
-//    if ((sendSize = send(sock, headerBytes, headerSize, 0)) == SOCKET_ERROR)
-//        return -1;
-//    totalSendSize += sendSize;
-
-//    if ((sendSize = send(sock, dataBytes, dataSize, 0)) == SOCKET_ERROR)
-//        return -1;
-//    totalSendSize += sendSize;
-
+    
     return totalSendSize;
 }
 

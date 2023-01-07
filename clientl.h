@@ -19,9 +19,7 @@ public:
     int sockPort();
 
     virtual bool connectServer(const char * servIp = "127.0.0.1", int port = 2500);
-    virtual int receiveBytes(char * & rawData) = 0;
     virtual bool receiveData(Decode * & ecd) = 0;
-    virtual int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) = 0;
     virtual bool sendData(Encode * ecd);
 
 protected:
@@ -30,15 +28,18 @@ protected:
     struct sockaddr_in servAdr;
 
     bool setSockInfo();
+    virtual int receiveBytes(char * & rawData) = 0;
+    virtual int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) = 0;
 };
 
 class ClientLTCP : public ClientL
 {
 public:
     explicit ClientLTCP();
-
-    int receiveBytes(char * & rawData) override;
     bool receiveData(Decode * & ecd) override;
+
+protected:
+    int receiveBytes(char * & rawData) override;
     int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) override;
 };
 
@@ -46,9 +47,10 @@ class ClientLUDP : public ClientL
 {
 public:
     explicit ClientLUDP();
-
-    int receiveBytes(char * & rawData) override;
     bool receiveData(Decode * & ecd) override;
+
+protected:
+    int receiveBytes(char * & rawData) override;
     int sendBytes(const char * headerBytes, const int headerSize, const char * dataBytes, const int dataSize) override;
 };
 #endif // CLIENTL_H
